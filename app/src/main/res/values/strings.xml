@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">MyCurriculumVitae</string>
+    <string name="eliud_githuku">Eliud Githuku</string>
+    <string name="summary_text">Junior app developer specializing in native android mobile app development. Experienced in following Modern Android Development (MAD) tools to ensure robust and scalable apps that serve as solutions to various life challenges. Also understands the recommended app development practices like app architecture for separation of concerns and single source of truth.</string>
+    <string name="summary_title">SUMMARY</string>
+    <string name="skill_highlights">Skill Highlights</string>
+    <string name="building_robust_apps">Building robust apps</string>
+    <string name="consuming_rest_apis">Consuming REST apis</string>
+    <string name="building_beautiful_uis">Building beautiful UIs</string>
+    <string name="integrating_room_for_database">Integrating ROOM for database</string>
+    <string name="collaboration_with_team_members">Collaboration with team members</string>
+    <string name="eager_to_learn">Eager to learn</string>
+    <string name="experience">Experience</string>
+    <string name="intern_mobile_developer">"Intern Mobile Developer: "</string>
+    <string name="hng_internship_duration">08/09/2023 to date</string>
+    <string name="hng_internship">HNG Internship, </string>
+    <string name="remote_based_internship"> Remote based internship</string>
 </resources>
