@@ -5,7 +5,7 @@
     <string name="summary_title">SUMMARY</string>
     <string name="skill_highlights">Skill Highlights</string>
     <string name="building_robust_apps">Building robust apps</string>
-    <string name="consuming_rest_apis">Consuming REST apis</string>
+    <string name="consuming_rest_apis">Consuming REST APIs</string>
     <string name="building_beautiful_uis">Building beautiful UIs</string>
     <string name="integrating_room_for_database">Integrating ROOM for database</string>
     <string name="collaboration_with_team_members">Collaboration with team members</string>
@@ -15,4 +15,15 @@
     <string name="hng_internship_duration">08/09/2023 to date</string>
     <string name="hng_internship">HNG Internship, </string>
     <string name="remote_based_internship"> Remote based internship</string>
+    <string name="hobbies_title">Hobbies</string>
+    <string name="reading_books">Reading books</string>
+    <string name="playing_field_hockey">Playing field hockey</string>
+    <string name="attending_tech_meetups">Attending tech meetups</string>
+    <string name="user_email">githukueliud@gmail.com</string>
+    <string name="phone_number">+2547 910-19770</string>
+    <string name="completion_of_tasks">Taking challenges and building apps around the challenges</string>
+    <string name="test_driven_development">Testing apps to ensure they work as expected</string>
+    <string name="timely_submission">Working on challenges and ensuring timely submissions</string>
+    <string name="collaboration_on_tasks">Collaboration on tasks with fellow interns</string>
+    <string name="test_driven_development_skill">Test Driven Development</string>
 </resources>

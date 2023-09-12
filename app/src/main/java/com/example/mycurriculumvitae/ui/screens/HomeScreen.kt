@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,50 +25,57 @@ import androidx.compose.ui.unit.sp
 import com.example.mycurriculumvitae.R
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
-    Column {
-        Row(
-            modifier = Modifier
-                .padding(5.dp)
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.eliud_githuku),
-                contentDescription = null,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(50))
-                    .size(100.dp)
-            )
-            Spacer(modifier = Modifier.size(20.dp))
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = stringResource(R.string.eliud_githuku),
-                    fontSize = 40.sp
-                )
-                ContactInfo()
+fun HomeScreen(navigateToEditScreen: () -> Unit ,modifier: Modifier = Modifier) {
+    LazyColumn {
+        items(1){
+            ContactInfo()
+            SummaryInfo()
+            SkillHighlights()
+            Experience()
+            HobbiesSection()
+            Button(onClick = { navigateToEditScreen }) {
+                Text(text = "Edit")
             }
         }
-        SummaryInfo()
-        SkillHighlights()
-        Experience()
     }
 }
 
 @Composable
 fun ContactInfo(modifier: Modifier = Modifier) {
-    Text(
-        text = "+2547 910-19770",
-        fontSize = 25.sp
-    )
-    Text(
-        text = "githukueliud@gmail.com",
-        fontSize = 20.sp
-    )
+    Row(
+        modifier = Modifier
+            .padding(5.dp)
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.eliud_githuku),
+            contentDescription = null,
+            modifier = Modifier
+                .clip(RoundedCornerShape(50))
+                .size(120.dp)
+        )
+        Spacer(modifier = Modifier.size(15.dp))
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Text(
+                text = stringResource(R.string.eliud_githuku),
+                fontSize = 40.sp
+            )
+            Text(
+                text = stringResource(R.string.phone_number),
+                fontSize = 25.sp
+            )
+            Text(
+                text = stringResource(R.string.user_email),
+                fontSize = 20.sp
+            )
+        }
+    }
 }
 
 @Composable
@@ -90,8 +99,10 @@ fun SummaryInfo(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun SkillHighlights() {
-    Column {
+fun SkillHighlights(modifier: Modifier = Modifier) {
+    Column(
+
+    ){
         Text(
             text = stringResource(R.string.skill_highlights),
             fontSize = 20.sp,
@@ -99,6 +110,13 @@ fun SkillHighlights() {
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .padding(start = 5.dp)
+        )
+        Text(
+            text = stringResource(R.string.test_driven_development_skill),
+            fontSize = 16.sp,
+            modifier = Modifier
+                .padding(5.dp)
+                .padding(start = 30.dp)
         )
         Text(
             text = stringResource(R.string.building_robust_apps),
@@ -158,29 +176,82 @@ fun Experience() {
         )
         Row {
             Text(
-                text = stringResource(R.string.intern_mobile_developer)
+                text = stringResource(R.string.intern_mobile_developer),
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                modifier = Modifier.padding(2.dp)
             )
             Text(
-                text = stringResource(R.string.hng_internship_duration)
+                text = stringResource(R.string.hng_internship_duration),
+                fontSize = 16.sp
             )
         }
         Row {
             Text(
                 text = stringResource(R.string.hng_internship),
                 fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
+                fontSize = 18.sp,
+                modifier = Modifier.padding(2.dp)
             )
             Spacer(modifier = Modifier.size(3.dp))
             Text(
                 text = stringResource(R.string.remote_based_internship),
-                fontSize = 20.sp
+                fontSize = 18.sp
             )
         }
+        Text(
+            text = stringResource(R.string.completion_of_tasks),
+            fontSize = 15.sp,
+            modifier = Modifier.padding(2.dp)
+        )
+        Text(
+            text = stringResource(R.string.test_driven_development),
+            fontSize = 15.sp,
+            modifier = Modifier.padding(2.dp)
+        )
+        Text(
+            text = stringResource(R.string.timely_submission),
+            fontSize = 15.sp,
+            modifier = Modifier.padding(2.dp)
+        )
+        Text(
+            text = stringResource(R.string.collaboration_on_tasks),
+            fontSize = 15.sp,
+            modifier = Modifier.padding(2.dp)
+        )
+    }
+}
+
+@Composable
+fun HobbiesSection() {
+    Column {
+        Text(
+            text = stringResource(R.string.hobbies_title),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Blue,
+            modifier = Modifier.padding(5.dp)
+        )
+        Text(
+            text = stringResource(R.string.reading_books),
+            fontSize = 15.sp,
+            modifier = Modifier.padding(4.dp)
+        )
+        Text(
+            text = stringResource(R.string.playing_field_hockey),
+            fontSize = 15.sp,
+            modifier = Modifier.padding(4.dp)
+        )
+        Text(
+            text = stringResource(R.string.attending_tech_meetups),
+            fontSize = 15.sp,
+            modifier = Modifier.padding(4.dp)
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(navigateToEditScreen = {})
 }
