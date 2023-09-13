@@ -26,4 +26,7 @@
     <string name="timely_submission">Working on challenges and ensuring timely submissions</string>
     <string name="collaboration_on_tasks">Collaboration on tasks with fellow interns</string>
     <string name="test_driven_development_skill">Test Driven Development</string>
+    <string name="back_button">back button</string>
+    <string name="edit_screen">Edit Screen</string>
+    <string name="edit_float_action_button">edit</string>
 </resources>

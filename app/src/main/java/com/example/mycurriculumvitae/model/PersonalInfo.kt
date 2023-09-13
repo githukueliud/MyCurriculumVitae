@@ -5,9 +5,9 @@ import androidx.annotation.StringRes
 
 data class PersonalInfo(
     @DrawableRes val personalImage: Int,
-    @StringRes val name: Int,
-    @StringRes val phoneNumber: Int,
-    @StringRes val email: Int,
+    val name: String,
+    val phoneNumber: String,
+    val email: String,
 )
 
 data class SummaryInfo(

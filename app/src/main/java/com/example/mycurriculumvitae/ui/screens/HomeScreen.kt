@@ -1,6 +1,8 @@
 package com.example.mycurriculumvitae.ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,6 +14,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,38 +26,63 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mycurriculumvitae.R
 
 @Composable
-fun HomeScreen(navigateToEditScreen: () -> Unit ,modifier: Modifier = Modifier) {
+fun HomeScreen(
+    onEditButtonClicked: () -> Unit,
+    cvViewModel: CvViewModel = viewModel(),
+    modifier: Modifier = Modifier
+) {
+    val cVUiState by cvViewModel.uiState.collectAsState()
+    val editScreenIsShown by cvViewModel.editScreenIsShown.collectAsState()
     LazyColumn {
         items(1){
-            ContactInfo()
-            SummaryInfo()
+            ContactInfo(
+                currentName = cVUiState.currentName,
+                currentGithubHandle = cVUiState.currentGithubHandle,
+                currentPhoneNumber = cVUiState.currentPhoneNumber,
+                currentSlackName = cVUiState.currentSlackName
+            )
+            SummaryInfo(
+                currentSummaryText = cVUiState.currentSummaryText
+            )
             SkillHighlights()
             Experience()
             HobbiesSection()
-            Button(onClick = { navigateToEditScreen }) {
+
+            Button(onClick =  onEditButtonClicked ) {
                 Text(text = "Edit")
             }
+
         }
     }
+
 }
 
 @Composable
-fun ContactInfo(modifier: Modifier = Modifier) {
+fun ContactInfo(
+    currentName: String,
+    currentGithubHandle: String,
+    currentPhoneNumber: String,
+    currentSlackName: String,
+    modifier: Modifier = Modifier
+) {
     Row(
         modifier = Modifier
+            .background(Color(147, 160, 39))
             .padding(5.dp)
             .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
     ) {
         Image(
             painter = painterResource(id = R.drawable.eliud_githuku),
             contentDescription = null,
             modifier = Modifier
                 .clip(RoundedCornerShape(50))
-                .size(120.dp)
+                .size(140.dp)
         )
         Spacer(modifier = Modifier.size(15.dp))
         Column(
@@ -63,15 +92,23 @@ fun ContactInfo(modifier: Modifier = Modifier) {
         ) {
 
             Text(
-                text = stringResource(R.string.eliud_githuku),
+                text = currentName,
                 fontSize = 40.sp
             )
+            Row{
+                Text(
+                    text = currentSlackName,
+                    fontSize = 20.sp
+                )
+                Spacer(modifier = Modifier.size(4.dp))
+                Text(text = "(Slack)", fontSize = 20.sp)
+            }
             Text(
-                text = stringResource(R.string.phone_number),
+                text = currentPhoneNumber,
                 fontSize = 25.sp
             )
             Text(
-                text = stringResource(R.string.user_email),
+                text = currentGithubHandle,
                 fontSize = 20.sp
             )
         }
@@ -79,7 +116,10 @@ fun ContactInfo(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun SummaryInfo(modifier: Modifier = Modifier) {
+fun SummaryInfo(
+    currentSummaryText: String,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = Modifier.padding(4.dp)
     ){
@@ -91,7 +131,7 @@ fun SummaryInfo(modifier: Modifier = Modifier) {
             modifier = Modifier.padding(start = 5.dp)
         )
         Text(
-            text = stringResource(R.string.summary_text),
+            text = currentSummaryText,
             fontSize = 16.sp,
             modifier = Modifier.padding(4.dp)
         )
@@ -99,7 +139,9 @@ fun SummaryInfo(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun SkillHighlights(modifier: Modifier = Modifier) {
+fun SkillHighlights(
+    modifier: Modifier = Modifier
+) {
     Column(
 
     ){
@@ -111,6 +153,7 @@ fun SkillHighlights(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .padding(start = 5.dp)
         )
+
         Text(
             text = stringResource(R.string.test_driven_development_skill),
             fontSize = 16.sp,
@@ -253,5 +296,7 @@ fun HobbiesSection() {
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(navigateToEditScreen = {})
+    HomeScreen(
+        onEditButtonClicked = {}
+    )
 }
