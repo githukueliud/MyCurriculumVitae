@@ -1,5 +1,6 @@
 package com.example.mycurriculumvitae.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -36,7 +37,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
     val cVUiState by cvViewModel.uiState.collectAsState()
-    val editScreenIsShown by cvViewModel.editScreenIsShown.collectAsState()
+    Log.d("HomeScreen", "updatedUi data is: ${cVUiState.currentName} ")
     LazyColumn {
         items(1){
             ContactInfo(
@@ -52,7 +53,10 @@ fun HomeScreen(
             Experience()
             HobbiesSection()
 
-            Button(onClick =  onEditButtonClicked ) {
+            Button(onClick = {
+                cvViewModel.updateInitialData(cVUiState)
+                onEditButtonClicked()
+            } ) {
                 Text(text = "Edit")
             }
 
@@ -162,13 +166,6 @@ fun SkillHighlights(
                 .padding(start = 30.dp)
         )
         Text(
-            text = stringResource(R.string.building_robust_apps),
-            fontSize = 16.sp,
-            modifier = Modifier
-                .padding(5.dp)
-                .padding(start = 30.dp)
-        )
-        Text(
             text = stringResource(R.string.consuming_rest_apis),
             fontSize = 16.sp,
             modifier = Modifier
@@ -184,20 +181,6 @@ fun SkillHighlights(
         )
         Text(
             text = stringResource(R.string.integrating_room_for_database),
-            fontSize = 16.sp,
-            modifier = Modifier
-                .padding(5.dp)
-                .padding(start = 30.dp)
-        )
-        Text(
-            text = stringResource(R.string.collaboration_with_team_members),
-            fontSize = 16.sp,
-            modifier = Modifier
-                .padding(5.dp)
-                .padding(start = 30.dp)
-        )
-        Text(
-            text = stringResource(R.string.eager_to_learn),
             fontSize = 16.sp,
             modifier = Modifier
                 .padding(5.dp)
@@ -222,11 +205,11 @@ fun Experience() {
                 text = stringResource(R.string.intern_mobile_developer),
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
-                modifier = Modifier.padding(2.dp)
+                modifier = Modifier.padding(start = 2.dp)
             )
             Text(
                 text = stringResource(R.string.hng_internship_duration),
-                fontSize = 16.sp
+                fontSize = 18.sp
             )
         }
         Row {
@@ -234,7 +217,7 @@ fun Experience() {
                 text = stringResource(R.string.hng_internship),
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
-                modifier = Modifier.padding(2.dp)
+                modifier = Modifier.padding(start = 2.dp)
             )
             Spacer(modifier = Modifier.size(3.dp))
             Text(
@@ -257,11 +240,6 @@ fun Experience() {
             fontSize = 15.sp,
             modifier = Modifier.padding(2.dp)
         )
-        Text(
-            text = stringResource(R.string.collaboration_on_tasks),
-            fontSize = 15.sp,
-            modifier = Modifier.padding(2.dp)
-        )
     }
 }
 
@@ -273,22 +251,18 @@ fun HobbiesSection() {
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Blue,
-            modifier = Modifier.padding(5.dp)
-        )
-        Text(
-            text = stringResource(R.string.reading_books),
-            fontSize = 15.sp,
             modifier = Modifier.padding(4.dp)
         )
+
         Text(
             text = stringResource(R.string.playing_field_hockey),
             fontSize = 15.sp,
-            modifier = Modifier.padding(4.dp)
+            modifier = Modifier.padding(2.dp)
         )
         Text(
             text = stringResource(R.string.attending_tech_meetups),
             fontSize = 15.sp,
-            modifier = Modifier.padding(4.dp)
+            modifier = Modifier.padding(2.dp)
         )
     }
 }

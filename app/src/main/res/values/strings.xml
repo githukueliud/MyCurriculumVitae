@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MyCurriculumVitae</string>
-    <string name="eliud_githuku">Eliud Githuku</string>
-    <string name="summary_text">Junior app developer specializing in native android mobile app development. Experienced in following Modern Android Development (MAD) tools to ensure robust and scalable apps that serve as solutions to various life challenges. Also understands the recommended app development practices like app architecture for separation of concerns and single source of truth.</string>
+<!--    <string name="eliud_githuku">Eliud Githuku</string>-->
+<!--    <string name="summary_text">Junior app developer specializing in native android mobile app development. Experienced in following Modern Android Development (MAD) tools to ensure robust and scalable apps that serve as solutions to various life challenges. Also understands the recommended app development practices like app architecture for separation of concerns and single source of truth.</string>-->
     <string name="summary_title">SUMMARY</string>
     <string name="skill_highlights">Skill Highlights</string>
     <string name="building_robust_apps">Building robust apps</string>
@@ -19,8 +19,8 @@
     <string name="reading_books">Reading books</string>
     <string name="playing_field_hockey">Playing field hockey</string>
     <string name="attending_tech_meetups">Attending tech meetups</string>
-    <string name="user_email">githukueliud@gmail.com</string>
-    <string name="phone_number">+2547 910-19770</string>
+<!--    <string name="user_email">githukueliud@gmail.com</string>-->
+<!--    <string name="phone_number">+2547 910-19770</string>-->
     <string name="completion_of_tasks">Taking challenges and building apps around the challenges</string>
     <string name="test_driven_development">Testing apps to ensure they work as expected</string>
     <string name="timely_submission">Working on challenges and ensuring timely submissions</string>

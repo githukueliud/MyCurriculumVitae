@@ -78,7 +78,7 @@ fun CVNavHost(
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = CVScreen.valueOf(
-        backStackEntry?.destination?.route?: CVScreen.HomeScreen.name
+        backStackEntry?.destination?.route ?: CVScreen.HomeScreen.name
     )
 
     Scaffold(
@@ -90,18 +90,21 @@ fun CVNavHost(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = onEditButtonClicked,
-                shape = MaterialTheme.shapes.medium,
-                modifier = Modifier.padding(10.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Create,
-                    contentDescription = stringResource(R.string.edit_float_action_button)
-                )
+            if (currentScreen == CVScreen.HomeScreen) {
+                FloatingActionButton(
+                    onClick = onEditButtonClicked,
+                    shape = MaterialTheme.shapes.medium,
+                    modifier = Modifier.padding(10.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Create,
+                        contentDescription = stringResource(R.string.edit_float_action_button)
+                    )
+                }
             }
         },
-    ) {innerPadding ->
+    )
+    { innerPadding ->
         val uiState by cvViewModel.uiState.collectAsState()
         //declaration of the navHost
         NavHost(
@@ -119,9 +122,6 @@ fun CVNavHost(
             composable(route = CVScreen.EditScreen.name) {
                 EditScreen(
                     onSaveButtonClicked = {
-                        cvViewModel.updateCvDetails(CVUiState(
-                            currentName = uiState.currentName
-                        ))
                         navController.popBackStack(CVScreen.HomeScreen.name, inclusive = false)
                     }
                 )
