@@ -3,7 +3,11 @@ package com.example.mycurriculumvitae.ui.screens
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
@@ -11,9 +15,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.mycurriculumvitae.R
 import com.example.mycurriculumvitae.model.CVUiState
 
 
@@ -36,7 +44,11 @@ fun EditScreen(
             onValueChange = {
                 cvViewModel.updateCvDetails(cVUiState.copy(currentName = it))
             },
-            modifier = Modifier.padding(5.dp),
+            singleLine = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
+            label = { Text(text = "Edit current name")}
         )
         OutlinedTextField(
             value = cVUiState.currentSlackName,
@@ -44,7 +56,11 @@ fun EditScreen(
                 cvViewModel.updateCvDetails(cVUiState.copy(currentSlackName = it))
 
             },
-            modifier = Modifier.padding(5.dp)
+            singleLine = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
+            label = { Text(text = stringResource(R.string.edit_current_name))}
         )
 
         OutlinedTextField(
@@ -52,7 +68,11 @@ fun EditScreen(
             onValueChange = {
                 cvViewModel.updateCvDetails(cVUiState.copy(currentPhoneNumber = it))
             },
-            modifier = Modifier.padding(5.dp)
+            singleLine = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
+            label = { Text(text = stringResource(R.string.edit_current_slack_name))}
         )
 
         OutlinedTextField(
@@ -60,7 +80,11 @@ fun EditScreen(
             onValueChange = {
                 cvViewModel.updateCvDetails(cVUiState.copy(currentGithubHandle = it))
             },
-            modifier = Modifier.padding(5.dp)
+            singleLine = true ,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
+            label = { Text(text = stringResource(R.string.edit_github_handle))}
         )
 
         OutlinedTextField(
@@ -68,14 +92,21 @@ fun EditScreen(
             onValueChange = {
                 cvViewModel.updateCvDetails(cVUiState.copy(currentSummaryText = it))
             },
-            modifier = Modifier.padding(5.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
+            label = { Text(text = stringResource(R.string.edit_bio_summary))}
         )
         OutlinedTextField(
             value = cVUiState.currentInternshipDuration,
             onValueChange = {
                 cvViewModel.updateCvDetails(cVUiState.copy(currentInternshipDuration = it))
             },
-            modifier = Modifier.padding(5.dp)
+            singleLine = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(5.dp),
+            label = { Text(text = stringResource(R.string.edit_internship_duration))}
         )
         Button(
             onClick = {
@@ -83,9 +114,15 @@ fun EditScreen(
                 cvViewModel.updateCvDetails(cVUiState)
                 onSaveButtonClicked()
 
-            }
+            },
+            modifier = Modifier.padding(5.dp)
+                .height(50.dp)
+                .fillMaxWidth(0.7f)
         ) {
-            Text(text = "Save")
+            Text(
+                text = stringResource(R.string.save_changes),
+                fontSize = 15.sp
+            )
         }
     }
 }

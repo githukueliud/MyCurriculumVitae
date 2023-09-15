@@ -29,4 +29,10 @@
     <string name="back_button">back button</string>
     <string name="edit_screen">Edit Screen</string>
     <string name="edit_float_action_button">edit</string>
+    <string name="edit_internship_duration">Edit internship duration</string>
+    <string name="edit_bio_summary">Edit bio summary</string>
+    <string name="edit_github_handle">Edit github handle</string>
+    <string name="edit_current_slack_name">Edit current slack name</string>
+    <string name="edit_current_name">Edit current name</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

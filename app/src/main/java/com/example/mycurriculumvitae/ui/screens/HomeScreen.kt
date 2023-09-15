@@ -109,7 +109,7 @@ fun ContactInfo(
             )
             Text(
                 text = currentGithubHandle,
-                fontSize = 20.sp
+                fontSize = 16.sp
             )
         }
     }
@@ -209,10 +209,13 @@ fun Experience(
             )
             Text(
                 text = currentInternshipDuration,
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                fontWeight = FontWeight(500)
             )
         }
-        Row {
+        Row(
+            modifier = Modifier.padding(bottom = 3.dp)
+        ) {
             Text(
                 text = stringResource(R.string.hng_internship),
                 fontWeight = FontWeight.Bold,
@@ -228,17 +231,17 @@ fun Experience(
         Text(
             text = stringResource(R.string.completion_of_tasks),
             fontSize = 15.sp,
-            modifier = Modifier.padding(2.dp)
+            modifier = Modifier.padding(3.dp)
         )
         Text(
             text = stringResource(R.string.test_driven_development),
             fontSize = 15.sp,
-            modifier = Modifier.padding(2.dp)
+            modifier = Modifier.padding(3.dp)
         )
         Text(
             text = stringResource(R.string.timely_submission),
             fontSize = 15.sp,
-            modifier = Modifier.padding(2.dp)
+            modifier = Modifier.padding(3.dp)
         )
     }
 }
