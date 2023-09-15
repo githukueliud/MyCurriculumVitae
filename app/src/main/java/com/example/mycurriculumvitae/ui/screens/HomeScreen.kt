@@ -33,12 +33,12 @@ import com.example.mycurriculumvitae.R
 @Composable
 fun HomeScreen(
     onEditButtonClicked: () -> Unit,
-    cvViewModel: CvViewModel = viewModel(),
+    cvViewModel: CvViewModel,
     modifier: Modifier = Modifier
 ) {
     val cVUiState by cvViewModel.uiState.collectAsState()
     LazyColumn {
-        items(1){
+        items(1) {
             ContactInfo(
                 currentName = cVUiState.currentName,
                 currentGithubHandle = cVUiState.currentGithubHandle,
@@ -49,18 +49,15 @@ fun HomeScreen(
                 currentSummaryText = cVUiState.currentSummaryText
             )
             SkillHighlights()
-            Experience()
+            Experience(
+                currentInternshipDuration = cVUiState.currentInternshipDuration
+            )
             HobbiesSection()
 
-            Button(onClick = {
-                cvViewModel.updateInitialData(cVUiState)
-                onEditButtonClicked()
-            } ) {
-                Text(text = "Edit")
-            }
 
         }
     }
+
 
 }
 
@@ -96,7 +93,7 @@ fun ContactInfo(
 
             Text(
                 text = currentName,
-                fontSize = 40.sp
+                fontSize = 30.sp
             )
             Row{
                 Text(
@@ -157,6 +154,7 @@ fun SkillHighlights(
                 .padding(start = 5.dp)
         )
 
+
         Text(
             text = stringResource(R.string.test_driven_development_skill),
             fontSize = 16.sp,
@@ -189,7 +187,10 @@ fun SkillHighlights(
 }
 
 @Composable
-fun Experience() {
+fun Experience(
+    currentInternshipDuration: String,
+    modifier: Modifier = Modifier
+) {
     Column {
         Text(
             text = stringResource(R.string.experience),
@@ -207,7 +208,7 @@ fun Experience() {
                 modifier = Modifier.padding(start = 2.dp)
             )
             Text(
-                text = stringResource(R.string.hng_internship_duration),
+                text = currentInternshipDuration,
                 fontSize = 18.sp
             )
         }
@@ -270,6 +271,7 @@ fun HobbiesSection() {
 @Composable
 fun HomeScreenPreview() {
     HomeScreen(
+        cvViewModel = viewModel(),
         onEditButtonClicked = {}
     )
 }

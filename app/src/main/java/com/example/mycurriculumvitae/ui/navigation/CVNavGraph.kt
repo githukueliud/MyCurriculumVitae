@@ -1,5 +1,6 @@
 package com.example.mycurriculumvitae.ui.navigation
 
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -105,7 +106,7 @@ fun CVNavHost(
         },
     )
     { innerPadding ->
-        val uiState by cvViewModel.uiState.collectAsState()
+//        val uiState by cvViewModel.uiState.collectAsState()
         //declaration of the navHost
         NavHost(
             navController = navController,
@@ -114,6 +115,7 @@ fun CVNavHost(
         ) {
             composable(route = CVScreen.HomeScreen.name) {
                 HomeScreen(
+                    cvViewModel= cvViewModel,
                     onEditButtonClicked = {
                         navController.navigate(CVScreen.EditScreen.name)
                     }
@@ -121,7 +123,10 @@ fun CVNavHost(
             }
             composable(route = CVScreen.EditScreen.name) {
                 EditScreen(
+                    cvViewModel = cvViewModel,
                     onSaveButtonClicked = {
+
+//                        cvViewModel.updateCvDetails(uiState)
                         navController.popBackStack(CVScreen.HomeScreen.name, inclusive = false)
                     }
                 )

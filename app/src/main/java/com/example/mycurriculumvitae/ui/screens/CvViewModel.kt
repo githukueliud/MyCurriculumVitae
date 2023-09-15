@@ -13,23 +13,20 @@ import kotlinx.coroutines.launch
 
 
 class CvViewModel: ViewModel() {
-    private val _uiState = MutableStateFlow<CVUiState>(CVUiState())
+    private val _uiState = MutableStateFlow(CVUiState())
     val uiState: StateFlow<CVUiState> = _uiState.asStateFlow()
 
 
-
-
+    //set Ui to user input
     fun updateCvDetails(updatedInfo: CVUiState) {
-        viewModelScope.launch {
-            _uiState.value = updatedInfo
-        }
+        _uiState.value = updatedInfo
+
     }
 
     // Function to update the initial data for CVUiState
     fun updateInitialData(newData: CVUiState) {
-        viewModelScope.launch{ _uiState.value = newData }
+        _uiState.value = newData
     }
-
 
 
 }

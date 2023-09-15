@@ -8,7 +8,8 @@ data class CVUiState(
     val currentGithubHandle: String = "github.com/githukueliud",
     val currentPhoneNumber: String = "+254791019770",
     val currentSummaryText: String = "Junior app developer specializing in native android mobile app development. Experienced in following Modern Android Development (MAD) tools to ensure robust and scalable apps that serve as solutions to various life challenges.",
-//    val currentSkillList: List<SkillList> = listOf<SkillList>(
+    val currentInternshipDuration: String = "08/09/2023 to date"
+    //    val currentSkillList: List<SkillList> = listOf<SkillList>(
 //        SkillList(R.string.test_driven_development_skill),
 //        SkillList(R.string.consuming_rest_apis),
 //        SkillList(R.string.building_beautiful_uis),
