@@ -275,6 +275,6 @@ fun HobbiesSection() {
 fun HomeScreenPreview() {
     HomeScreen(
         cvViewModel = viewModel(),
-        onEditButtonClicked = {}
+        onEditButtonClicked = {/* Do nothing */}
     )
 }
