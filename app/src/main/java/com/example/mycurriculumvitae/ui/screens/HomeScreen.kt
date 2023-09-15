@@ -37,7 +37,6 @@ fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
     val cVUiState by cvViewModel.uiState.collectAsState()
-    Log.d("HomeScreen", "updatedUi data is: ${cVUiState.currentName} ")
     LazyColumn {
         items(1){
             ContactInfo(

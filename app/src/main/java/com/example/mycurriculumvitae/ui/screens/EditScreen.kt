@@ -17,46 +17,39 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mycurriculumvitae.model.CVUiState
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditScreen(
     onSaveButtonClicked: () -> Unit,
     cvViewModel: CvViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
-    val cVUiState by cvViewModel.uiState.collectAsState()
-
-    // Declare different variable names for TextFieldValue objects
-    var currentNameValue by remember { mutableStateOf(TextFieldValue(cVUiState.currentName)) }
-    var currentGithubHandleValue by remember { mutableStateOf(TextFieldValue(cVUiState.currentGithubHandle)) }
-    var currentPhoneNumberValue by remember { mutableStateOf(TextFieldValue(cVUiState.currentPhoneNumber)) }
-    var currentSummaryTextValue by remember { mutableStateOf(TextFieldValue(cVUiState.currentSummaryText)) }
-    var currentSlackNameValue by remember { mutableStateOf(TextFieldValue(cVUiState.currentSlackName)) }
+    val uiState by cvViewModel.uiState.collectAsState()
 
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         EditPersonalInfo(
-            modifier = modifier,
-            currentName = currentNameValue.text,
-            currentGithubHandle = currentGithubHandleValue.text,
-            currentPhoneNumber = currentPhoneNumberValue.text,
-            currentSummaryText = currentSummaryTextValue.text,
-            currentSlackName = currentSlackNameValue.text
+            cvViewModel = cvViewModel,
+            currentName = uiState.currentName,
+            currentGithubHandle = uiState.currentGithubHandle,
+            currentPhoneNumber = uiState.currentPhoneNumber,
+            currentSummaryText = uiState.currentSummaryText,
+            currentSlackName = uiState.currentSlackName,
+            modifier = modifier
         )
         Button(
             onClick = {
-                val editedInfo = CVUiState(
-                    currentName = currentNameValue.text,
-                    currentGithubHandle = currentGithubHandleValue.text,
-                    currentPhoneNumber = currentPhoneNumberValue.text,
-                    currentSummaryText = currentSummaryTextValue.text,
-                    currentSlackName = currentSlackNameValue.text
+                val updatedInfo = CVUiState(
+                    currentName = uiState.currentName,
+                    currentGithubHandle = uiState.currentGithubHandle,
+                    currentPhoneNumber = uiState.currentPhoneNumber,
+                    currentSummaryText = uiState.currentSummaryText,
+                    currentSlackName = uiState.currentSlackName,
                 )
-                //update the viewmodel
-                cvViewModel.updateCvDetails(editedInfo)
-                // Print a message to Logcat
-                Log.d("MyApp", "Updated UI State: $editedInfo")
+                // Save the edited info by calling the view model function
+                cvViewModel.updateCvDetails(updatedInfo)
                 onSaveButtonClicked()
             }
         ) {
@@ -64,7 +57,6 @@ fun EditScreen(
         }
     }
 }
-
 
 
 
@@ -80,38 +72,46 @@ fun EditPersonalInfo(
     currentSlackName: String,
     modifier: Modifier = Modifier
 ) {
-    var currentName by remember { mutableStateOf(TextFieldValue(cvViewModel.uiState.value.currentName)) }
-    var currentGithubHandle by remember { mutableStateOf(TextFieldValue(cvViewModel.uiState.value.currentGithubHandle)) }
-    var currentPhoneNumber by remember { mutableStateOf(TextFieldValue(cvViewModel.uiState.value.currentPhoneNumber)) }
-    var currentSummaryText by remember { mutableStateOf(TextFieldValue(cvViewModel.uiState.value.currentSummaryText)) }
-    var currentSlackName by remember { mutableStateOf(TextFieldValue(cvViewModel.uiState.value.currentSlackName)) }
+    val uiState by cvViewModel.uiState.collectAsState()
+
     OutlinedTextField(
-        value = currentName,
-        onValueChange = { currentName = it },
+        value = uiState.currentName,
+        onValueChange = {
+            cvViewModel.updateCvDetails(uiState.copy(currentName = it))
+        },
         modifier = Modifier.padding(5.dp)
     )
 
     OutlinedTextField(
-        value = currentSlackName,
-        onValueChange = { currentSlackName = it },
+        value = uiState.currentSlackName,
+        onValueChange = {
+            cvViewModel.updateCvDetails(uiState.copy(currentSlackName = it))
+        },
         modifier = Modifier.padding(5.dp)
     )
 
     OutlinedTextField(
-        value = currentPhoneNumber,
-        onValueChange = { currentPhoneNumber = it },
+        value = uiState.currentPhoneNumber,
+        onValueChange = {
+            cvViewModel.updateCvDetails(uiState.copy(currentPhoneNumber = it))
+        },
         modifier = Modifier.padding(5.dp)
     )
 
     OutlinedTextField(
-        value = currentGithubHandle,
-        onValueChange = { currentGithubHandle = it } ,
+        value = uiState.currentGithubHandle,
+        onValueChange = {
+            cvViewModel.updateCvDetails(uiState.copy(currentGithubHandle = it))
+        },
         modifier = Modifier.padding(5.dp)
     )
 
     OutlinedTextField(
-        value = currentSummaryText,
-        onValueChange = { currentSummaryText = it } ,
+        value = uiState.currentSummaryText,
+        onValueChange = {
+            cvViewModel.updateCvDetails(uiState.copy(currentSummaryText = it))
+        },
         modifier = Modifier.padding(5.dp)
     )
 }
+
